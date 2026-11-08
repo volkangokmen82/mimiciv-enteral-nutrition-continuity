@@ -2,7 +2,7 @@
 """One-shot local runner for the final MIMIC-IV EN continuity analysis release.
 
 Runs the primary analysis, phenotype adjudication, aggregate verification,
-cross-table reproducibility checks, and submission-document builder.
+and cross-table reproducibility checks.
 All MIMIC-IV reads occur locally. Only aggregate outputs are written.
 """
 from __future__ import annotations

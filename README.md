@@ -18,6 +18,18 @@ python run_final.py --root PATH_TO_MIMICIV --config PATH_TO_LOCAL_CONFIG --out P
 
 The output directory must be empty or absent. The pipeline builds the cohort, runs the primary and phenotype sensitivity analyses, and validates local aggregate outputs. The primary pause-to-resumption analysis uses the Aalen–Johansen estimator, with intensive care exit as a competing event and administrative right censoring at 72 hours. Bootstrap intervals use patient-level clusters. The code records checksums of local inputs to support reproducibility.
 
-This public distribution excludes manuscript generation and internal comparisons against fixed historical results. It retains the legacy follow-up definition as a computed sensitivity analysis. Exact replication requires the original study configuration. Clinical author review remains necessary.
+This public distribution excludes manuscript generation and internal comparisons against fixed historical results. It retains the first-feed-anchored 72-hour follow-up definition as a computed sensitivity analysis. Exact replication requires the original study configuration files described in [config/README.md](config/README.md).
 
 Keep MIMIC-IV tables, credentials, local configuration and all generated results outside the public repository. The included tests use constructed inputs and require no patient data.
+
+## Repository contents
+
+- `analysis_v3.py`: cohort construction, enteral nutrition phenotype, pause-anchored Aalen–Johansen analysis with patient-cluster bootstrap, bedside charting and formula-volume summaries.
+- `phenotype_adjudication_v3.py`: procedure-timing, procedure-phenotype and status-label sensitivity analyses.
+- `verify_results_v3.py`: independent aggregate verification of the main outputs.
+- `run_final.py`: one-shot runner that executes all steps and cross-validates the aggregate outputs.
+- `tests/`: unit tests on constructed data (no patient data).
+
+## License
+
+MIT License. See `LICENSE`.
